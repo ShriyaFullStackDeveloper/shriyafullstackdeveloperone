@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./Assets/images/gameon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            background-color: white;
+            width: 100vw;
+            margin: 0%;
+            padding: 0%;
+
+        }
+
+        ul.slides {
+            display: block;
+            position: relative;
+            height: 780px;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            list-style: none;
+        }
+
+        .slides * {
+            user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        ul.slides input {
+            display: none;
+        }
+
+
+        .slide-container {
+            width: 100%;
+
+            display: block;
+        }
+
+        .slide-image {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            opacity: 0;
+            transition: all .2s ease-in-out;
+        }
+
+        .slide-image img {
+            width: auto;
+            min-width: 100%;
+            height: 100%;
+
+        }
+
+
+        .carousel-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            font-size: 100px;
+            line-height: 600px;
+            color: #fff;
+        }
+
+        .carousel-controls label {
+            display: none;
+            position: absolute;
+
+            opacity: 0;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+
+        .slide-image:hover+.carousel-controls label {
+            opacity: 0.5;
+        }
+
+        .carousel-controls label:hover {
+            opacity: 1;
+        }
+
+        .carousel-controls .prev-slide {
+            width: 48%;
+            text-align: left;
+            left: 0;
+        }
+
+        .carousel-controls .next-slide {
+            width: 49%;
+            text-align: right;
+            right: 0;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+            z-index: 999;
+            text-align: center;
+        }
+
+        .carousel-dots .carousel-dot {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.5;
+            margin: 10px;
+        }
+
+        input:checked+.slide-container .slide-image {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 1s ease-in-out;
+        }
+
+        input:checked+.slide-container .carousel-controls label {
+            display: block;
+        }
+
+        input#img-1:checked~.carousel-dots label#img-dot-1,
+        input#img-2:checked~.carousel-dots label#img-dot-2,
+        input#img-3:checked~.carousel-dots label#img-dot-3,
+        input#img-4:checked~.carousel-dots label#img-dot-4,
+        input#img-5:checked~.carousel-dots label#img-dot-5,
+        input#img-6:checked~.carousel-dots label#img-dot-6 {
+            opacity: 1;
+        }
+
+
+        input:checked+.slide-container .nav label {
+            display: block;
+        }
+
+
+        h2 {
+            color: black;
+            font-weight: 100;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: black;
+            font-size: 50px;
+            margin: 10px auto;
+        }
+
+        h3 {
+            color: black;
+            font-weight: 100;
+            margin: 20px auto 80px;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: 0;
+            border-radius: 15px;
+            background: black;
+            color: #06D001;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .content {
+            width: 45%;
+            position: absolute;
+            top: 200px;
+            left: 100px;
+            transform: translateY(100px);
+            animation: textup 3s linear infinite;
+        }
+
+        @keyframes textup {
+            10% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .content1 {
+            animation-delay: 0s;
+        }
+
+        .content2 {
+            animation: textup 2s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .content3 {
+            animation: textup 2s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .blog-header-logo {
+            font-family: orbitron;
+            font-size: 52px;
+
+        }
+
+
+
+        .blog-header-logo span {
+            color: #06D001;
+        }
+
+        .nav-link {
+            color: #06D001;
+        }
+
+
+        /*features*/
+        .flip-main {
+            width: 100%;
+            height: 35vh;
+
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .flip-box {
+            background-color: transparent;
+            width: 320px;
+            height: 270px;
+
+            perspective: 1000px;
+        }
+
+        .flip-box-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-box:hover .flip-box-inner {
+            transform: rotateX(180deg);
+        }
+
+        .flip-box-front,
+        .flip-box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-box-front {
+            background-color: #b76e6e;
+            color: black;
+        }
+
+        .flip-box-back {
+
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+            transform: rotateX(180deg);
+            opacity: 0.5;
+        }
+
+        .flip-box-back h2 {
+            color: white;
+        }
+
+        .flip-one {
+            background-image: url(./Assets/images/bike.jpg);
+
+        }
+
+        .flip-two {
+            background-image: url(./Assets/images/polo.jpg);
+        }
+
+        .flip-three {
+            background-image: url(./Assets/images/womenscolle.jpg);
+        }
+
+        .flip-four {
+            background-image: url(./Assets/images/accesories.jpg);
+        }
+
+        .features {
+            background-image: url(./Assets/images/bike.jpg);
+            opacity: 0.9;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .main-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 100vh;
+            background: #212121;
+
+        }
+
+        .main-box-two {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 15px;
+            background: #212121;
+
+        }
+
+        .main-box-one {
+            display: flex;
+            text-align: center;
+
+        }
+
+        .main-box-one span {
+            color: #06D001;
+
+        }
+
+
+        .card-main {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            background: #191919;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .card-main::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            width: 100%;
+            height: 100%;
+            background: #06D001;
+            transform: skewY(345deg);
+            transition: 0.5s;
+        }
+
+        .card-main:hover::before {
+            top: -70%;
+            transform: skewY(390deg);
+        }
+
+        .card-main::after {
+            content: " GO";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-weight: 600;
+            font-size: 6em;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .card-main .imgBox {
+            position: relative;
+            width: 100%;
+            height: 40%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1;
+        }
+
+        /*
+.card .imgBox img {
+max-width: 100%;
+
+transition: .5s;
+}
+
+.card:hover .imgBox img {
+max-width: 50%;
+
+}
+*/
+        .card-main .contentBox {
+            position: relative;
+
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .star {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .card-main .contentBox h3 {
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-main .contentBox .price {
+            font-size: 24px;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .card-main .contentBox .buy {
+            position: relative;
+            top: 100px;
+            opacity: 0;
+            padding: 10px 30px;
+            margin-top: 15px;
+            color: #000000;
+            text-decoration: none;
+            background: #06D001;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.5s;
+        }
+
+        .card-main:hover .contentBox .buy {
+            top: 0;
+            opacity: 1;
+        }
+
+        .mouse {
+            height: 200px;
+            width: auto;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .view {
+            width: 100%;
+            height: 50px;
+            background: white;
+            text-align: center;
+
+        }
+
+        .view a {
+            text-decoration: none;
+        }
+
+        .avatar {
+            vertical-align: middle;
+            width: 40px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .map {
+            width: 100%;
+            height: 50vh;
+            display: flex;
+            padding: 30px;
+            background-color: #06D001;
+            align-items: center;
+        }
+
+        .map-img {
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+        }
+
+        .container {
+            width: 100vw;
+        }
+
+
+        @media (max-width: 576px) {
+            .flip-main {
+                width: 100vw;
+                height: 80vh;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .flip-box {
+                background-color: transparent;
+                width: 300px;
+                height: 400px;
+               
+                perspective: 1000px;
+            }
+
+            .flip-main {
+                width: 100vw;
+                height: 100vh;
+
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+
+            }
+
+            .main-box-two {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 15px;
+                background: #212121;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 768px) {
+            .flip-main {
+                width: 100vw;
+                height: 80vh;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .flip-box {
+                background-color: transparent;
+                width: 300px;
+                height: 400px;
+               
+                perspective: 1000px;
+            }
+
+            .flip-main {
+                width: 100vw;
+                height: 100vh;
+
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+
+            }
+
+            .main-box-two {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 15px;
+                background: #212121;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 992px) {
+            .flip-main {
+                width: 100vw;
+                height: 80vh;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .flip-box {
+                background-color: transparent;
+                width: 300px;
+                height: 400px;
+               
+                perspective: 1000px;
+            }
+
+            .flip-main {
+                width: 100vw;
+                height: 100vh;
+
+                background-color: black;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                padding: 50px;
+                align-items: center;
+                justify-content: space-between;
+
+            }
+
+            .main-box-two {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 15px;
+                background: #212121;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .flip-main {
+                width: 100vw;
+                height: 80vh;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .flip-box {
+                background-color: transparent;
+                width: 300px;
+                height: 400px;
+               
+                perspective: 1000px;
+            }
+
+            .flip-main {
+                width: 100vw;
+                height: 100vh;
+
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+
+            }
+
+            .main-box-two {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 15px;
+                background: #212121;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!--header-->
+        <div class="container">
+            <header class="border-bottom lh-1 py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+
+                    <div class="col-4 text-center">
+                        <a class="blog-header-logo text-body-emphasis text-decoration-none name" href="#"
+                            style="color: white;">Game<span> On
+                            </span></a>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end align-items-center">
+                        <a class="btn btn-sm btn-outline-secondary" href="">Sign up</a>
+
+                        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                            <li class="ms-3"><a class="text-body-secondary" href="https://x.com/i/flow/login"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem"
+                                        fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                    </svg></a></li>
+                            <li class="ms-3"><a class="text-body-secondary"
+                                    href="https://www.instagram.com/accounts/login/?hl=en"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem"
+                                        fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                    </svg></a></li>
+                            <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/login/"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem"
+                                        fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                                    </svg></a></li>
+                        </ul>
+                        <br>
+
+
+                    </div>
+
+                </div>
+            </header>
+        </div>
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+            <div class="container">
+                <a class="navbar-brand d-md-none" href="#">
+                    <svg class="bi" width="24" height="24">
+                        <use xlink:href="#aperture" />
+                    </svg>
+                    Aperture
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                    aria-controls="offcanvas" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasLabel">Aperture</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav flex-grow-1 justify-content-between">
+                            <li class="nav-item"><a class="nav-link" href="#">
+                                    <svg class="bi" width="24" height="24">
+                                        <use xlink:href="#aperture" />
+                                    </svg>
+                                </a></li>
+                            <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#category">CATEGORIES</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#product">PRODUCT</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#features">FEATURES</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#contact">CONTACT US</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">
+                                    <svg class="bi" width="24" height="24">
+                                        <use xlink:href="#cart" />
+                                    </svg>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--header-->
+    <div class="container-fluid">
+        <div id="home" class="carousel" data-bs-ride="carousel">
+            <ul class="slides">
+                <input type="radio" name="radio-buttons" id="img-1" checked />
+                <li class="slide-container">
+                    <div class="slide-image" data-bs-interval="1000">
+                        <img src="./Assets/images/mamrun.jpg" width="100%">
+                        <div class="content content1">
+                            <h2>Sale upto 50% off</h2>
+                            <hr>
+                            <h1>BEST MEN'S SPORT COLLECTION</h1>
+                            <hr>
+
+                        </div>
+
+                    </div>
+                    <div class="carousel-controls">
+                        <label for="img-3" class="prev-slide">
+                            <span>&lsaquo;</span>
+                        </label>
+                        <label for="img-2" class="next-slide">
+                            <span>&rsaquo;</span>
+                        </label>
+                    </div>
+                </li>
+                <input type="radio" name="radio-buttons" id="img-2" />
+                <li class="slide-container ">
+                    <div class="slide-image" data-bs-interval="1000">
+                        <img src="./Assets/images/football.jpg" width="100%">
+                        <div class="content content2">
+                            <h2>Sale upto 50% off</h2>
+                            <hr>
+                            <h1>BEST SPORTS ACCESSORIES</h1>
+                            <hr>
+
+
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <label for="img-1" class="prev-slide">
+                            <span>&lsaquo;</span>
+                        </label>
+                        <label for="img-3" class="next-slide">
+                            <span>&rsaquo;</span>
+                        </label>
+                    </div>
+                </li>
+                <input type="radio" name="radio-buttons" id="img-3" />
+                <li class="slide-container">
+                    <div class="slide-image" data-bs-interval="1000">
+                        <img src="./Assets/images/batmin.jpg" width="100%">
+                        <div class="content content3">
+                            <h2>Sale upto 50% off</h2>
+                            <hr>
+                            <h1>LIVE WITH US</h1>
+                            <hr>
+
+
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <label for="img-2" class="prev-slide" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="prev">
+                            <span>&lsaquo;</span>
+                        </label>
+                        <label for="img-1" class="next-slide" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="next">
+                            <span>&rsaquo;</span>
+                        </label>
+                    </div>
+                </li>
+                <div id="category" class="carousel-dots">
+                    <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+                    <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+                    <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container"></div>
+        <div class="flip-main">
+
+            <div class="flip-box ">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="./Assets/images/bike.jpg" width="100%" height="100%" alt="">
+                    </div>
+                    <div class="flip-box-back flip-one">
+                        <br><br><br><br>
+                        <h2><strong>BIKE COLLECTION</strong></h2>
+                        <a href="bike.html"><button>View All</button></a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="./Assets/images/polo.jpg" width="100%" height="100%" alt="">
+                    </div>
+                    <div class="flip-box-back flip-two">
+                        <br><br><br><br>
+                        <h2><strong>MEN'S COLLECTION</strong></h2>
+                        <a href="mencollection.html"> <button>View All</button></a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="./Assets/images/womenscolle.jpg" width="100%" height="100%" alt="">
+                    </div>
+                    <div class="flip-box-back flip-three">
+                        <br><br><br><br>
+                        <h2><strong>WOMEN'S COLLECTION</strong></h2>
+                        <a href="womencollection.html"><button>View All</button></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="./Assets/images/accesories.jpg" width="100%" height="100%" alt="">
+                    </div>
+                    <div class="flip-box-back flip-four">
+                        <br><br><br><br>
+                        <h2><strong>ACCESSORIES COLLECTION</strong></h2>
+                        <a href="assessory.html"><button>View All</button></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <!--new-arrivals-->
+
+    </main>
+    <!--flipbox-->
+
+    <div class="container-fluid">
+
+        <div id="product" class="main-box">
+            <div class="main-box-one">
+                <h1 style="color: white;"><span><i>Game On </i></span>Best Deals</h1>
+            </div>
+            <div class="main-box-two">
+                <div class="card-main">
+
+                    <div class="imgBox">
+                        <img src="./Assets/images/MEN1.jpg" alt="mouse corsair" class="mouse">
+                    </div>
+
+                    <div class="contentBox">
+                        <h3>MEN'S T-SHIRT</h3>
+                        <h2 class="price">&#8377;600</h2>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                        <a href="" class="buy">Buy Now</a>
+                    </div>
+
+                </div>
+                <!--next-->
+                <div class="card-main">
+
+                    <div class="imgBox">
+                        <img src="./Assets/images/wo-tshirt.jpg" alt="mouse corsair" class="mouse">
+                    </div>
+
+                    <div class="contentBox">
+                        <h3>WOMEN'S T-SHIRT</h3>
+
+                        <h2 class="price">&#8377;500</h2>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                        <a href="" class="buy">Buy Now</a>
+                    </div>
+
+                </div>
+                <!--next-->
+                <div class="card-main">
+
+                    <div class="imgBox">
+                        <img src="./Assets/images/tracksuit.jpeg" alt="mouse corsair" class="mouse">
+                    </div>
+
+                    <div class="contentBox">
+                        <h3>MEN'S TRACKSUIT</h3>
+                        <h2 class="price">&#8377;499</h2>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                        <a href="" class="buy">Buy Now</a>
+                    </div>
+
+                </div>
+                <div class="card-main">
+
+                    <div class="imgBox">
+                        <img src="./Assets/images/shoes.jpg" alt="mouse corsair" class="mouse">
+                    </div>
+
+                    <div class="contentBox">
+                        <h3>SPORTS SHOES</h3>
+                        <h2 class="price">&#8377;599</h2>
+                        <div class="star">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                        <a href="" class="buy">Buy Now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--new-arrivals-->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="b-example-divider"></div>
+            <div id="features" class="view">
+                <a href="cardfake.html">
+                    <h3 style="color: #06D001;">VIEW ALL PRODUCTS →</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--new-->
+    <div class="container-fluid">
+        <div class="container px-4 py-5 features">
+
+            <h2 class="fw-bold text-body-emphasis ">Game On <span style="color: white;"> Features </span></h2>
+            <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+
+
+
+
+            </div>
+
+            <div class="col">
+                <div class="row row-cols-1 row-cols-sm-2 g-4">
+
+                    <div class="col d-flex flex-column gap-2">
+                        <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem"
+                            fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                            <path
+                                d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                        </svg>
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis" style="color: white;">Free Shipping</h4>
+                        <p class="text-body-secondary"></p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem"
+                            fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                        </svg>
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Returns</h4>
+                        <p class="text-body-secondary"></p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem"
+                            fill="currentColor" class="bi bi-bag-check" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                        </svg>
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Secure Payment</h4>
+                        <p class="text-body-secondary"></p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="4rem" height="4rem"
+                            fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                            <path
+                                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                        </svg>
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">24/7 help centre</h4>
+                        <p class="text-body-secondary"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="b-example-divider"></div>
+    <div class="b-example-divider"></div>
+
+    <div class="container-fluid">
+        <footer style="background-color: #000000;margin-bottom: 10%; "
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top" data-bs-theme="dark">
+
+            <div style="width: 20vw; margin-left: 5%; " class="col mb-3 ">
+                <h1 style="color: white">
+                    Sign up here for new updates and offers</h1>
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                    </div>
+                </form>
+            </div>
+
+
+            <div style="margin-left: 10%;" class="col mb-3">
+                <h5>ORDERS</h5>
+                <hr>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">Payment
+                            options</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">Shipping </a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">Returns</a></li>
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">Delivery</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="col mb-3">
+                <h5>INFORMATION</h5>
+                <hr>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">Specials</a></li>
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">New Products </a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="" class="nav-link p-0 text-body-secondary">Best Sellers</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="col mb-3">
+                <h5>CONTACT US</h5>
+                <hr>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <p style="font-size: 20px; color:rgb(181, 171, 171);"> <i style="font-size: 25px;color:#2cc2a2;"
+                                class='bx bxs-phone'></i>
+                            Call us </p>
+                        <p style="font-size: 16px; color:rgb(181, 171, 171);">+91 93220XXXXX ,899405XXXX</p>
+
+                        </i>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <p style="font-size: 20px; color:rgb(181, 171, 171);"> <i
+                                style=" font-size: 25px; color:#2cc2a2;" class='bx bxs-location-plus'></i>
+                            Location </p>
+                        <p style="font-size: 16px; color:rgb(181, 171, 171);"> Nagpur,Mahrashtra</p>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <p style="font-size: 20px; color:rgb(181, 171, 171);"><i
+                                style=" font-size: 25px; color:#2cc2a2;" class="fa-solid fa-clock"></i>
+                            Business Hours </p>
+                        <p style="font-size: 16px; color:rgb(181, 171, 171);">Mon – Fri …… 10 am – 8 pm, Sat, Sun
+                            ....… Closed</p>
+                    </li>
+
+                </ul>
+            </div>
+    </div>
+    </footer>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="map">
+                <div class="map-img"><iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.91403671457!2d78.5800837744738!3d21.27487008043673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd459e21828b97b%3A0x570697596c9a36ae!2sGame%20On%20Sports%20Shope!5e0!3m2!1sen!2sin!4v1723019426575!5m2!1sen!2sin"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+        </div>
+    </div>
+    <div class="b-example-divider"></div>
+    <!--footer-->
+    <div class="container-fluid">
+        <div class="container ">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                        <svg class="bi" width="30" height="24">
+                            <use xlink:href="#bootstrap" />
+                        </svg>
+                    </a>
+                    <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+                </div>
+
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-body-secondary" href="https://x.com/i/flow/login"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor"
+                                class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                            </svg></a></li>
+                    <li class="ms-3"><a class="text-body-secondary"
+                            href="https://www.instagram.com/accounts/login/?hl=en"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor"
+                                class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                            </svg></a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/login/"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor"
+                                class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                            </svg></a></li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+    <!--footerend-->
+
+</body>
+
+</html>
